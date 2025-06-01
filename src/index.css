@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+::selection {
+  background: #007BFF;
+  color: #fff;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 24px;
+  margin-inline: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
