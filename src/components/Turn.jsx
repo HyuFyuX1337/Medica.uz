@@ -57,14 +57,13 @@ export default function Turn() {
     setShowModal(true);
 
     const message = `
-🧾 Yangi navbat so'rovi:
-
-👤 F.I.SH: ${data.name} ${data.surname}
-🩺 Xizmat: ${data.service}
-👨‍⚕️ Shifokor: ${data.doctor}
-📅 Sana: ${data.day}, ${data.time}
-🎫 Navbat raqami: ${data.ticketNumber}
-  `;
+🧾 <b>Yangi navbat so'rovi:</b>
+👤 <b>FISH:</b> ${name} ${surname}
+🩺 <b>Xizmat:</b> ${service}
+👨‍⚕️ <b>Shifokor:</b> ${doctor}
+📅 <b>Sana:</b> ${day}, ${time}
+🎫 <b>Navbat raqami:</b> #${random}
+`;
 
     try {
       await axios.post(
