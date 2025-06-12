@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BsTelephone } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
+import axios from "axios";
 
 const services = ["Terapevt", "Stomatolog", "Kardiolog", "Nevrolog"];
 const doctors = {
@@ -47,12 +48,36 @@ export default function Turn() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
+
     const random = Math.floor(1000 + Math.random() * 9000);
     setTicketNumber(random);
     setShowModal(true);
+
+    const message = `
+🧾 Yangi navbat so'rovi:
+
+👤 F.I.SH: ${data.name} ${data.surname}
+🩺 Xizmat: ${data.service}
+👨‍⚕️ Shifokor: ${data.doctor}
+📅 Sana: ${data.day}, ${data.time}
+🎫 Navbat raqami: ${data.ticketNumber}
+  `;
+
+    try {
+      await axios.post(
+        `https://api.telegram.org/bot7293725653:AAEsq3Zay9KB2NeUMMwlhjb31UWow0Ed220/sendMessage`,
+        {
+          chat_id: "6825145013", // <-- chat ID'ingizni shu yerga yozing
+          text: message,
+          parse_mode: "HTML",
+        }
+      );
+    } catch (error) {
+      console.error("Telegramga yuborishda xatolik:", error);
+    }
   };
 
   const resetForm = () => {
